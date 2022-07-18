@@ -4,6 +4,8 @@ const {
   ItemController,
   UsersController,
   EquipesController,
+  JourneesController,
+  MatchsController,
 } = require("./controllers");
 
 const router = express.Router();
@@ -23,5 +25,10 @@ router.post("/create_user", UsersController.add);
 router.post("/login", idFromEmailMiddleware, UsersController.session);
 
 router.post("/create_team", EquipesController.add);
+
+router.post("/create_journee", JourneesController.add);
+
+router.get("/view_match/:journee", MatchsController.browse);
+router.post("/create_match", MatchsController.add);
 
 module.exports = router;
