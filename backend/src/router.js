@@ -1,6 +1,10 @@
 const express = require("express");
 
-const { ItemController, UsersController } = require("./controllers");
+const {
+  ItemController,
+  UsersController,
+  EquipesController,
+} = require("./controllers");
 
 const router = express.Router();
 
@@ -17,5 +21,7 @@ router.delete("/items/:id", ItemController.delete);
 
 router.post("/create_user", UsersController.add);
 router.post("/login", idFromEmailMiddleware, UsersController.session);
+
+router.post("/create_team", EquipesController.add);
 
 module.exports = router;

@@ -5,17 +5,18 @@ class UsersManager extends AbstractManager {
 
   insert(user) {
     return this.connection.query(
-      `insert into ${this.table} (id, pseudo, email, avatar, password) values (?, ?, ?, ?, ?)`,
-      [user.id, user.pseudo, user.email, user.avatar, user.password]
+      `insert into ${this.table} (id, pseudo, email, avatar, password, isadmin) values (?, ?, ?, ?, ?, ?)`,
+      [
+        user.id,
+        user.pseudo,
+        user.email,
+        user.avatar,
+        user.password,
+        user.isadmin,
+      ]
     );
   }
 
-  findByEmail(userEmail) {
-    return this.connection.query(
-      `select id from ${this.table} where email = ?`,
-      [userEmail]
-    );
-  }
   /*
   update(item) {
     return this.connection.query(

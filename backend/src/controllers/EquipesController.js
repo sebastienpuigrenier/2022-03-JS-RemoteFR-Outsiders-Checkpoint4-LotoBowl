@@ -1,59 +1,22 @@
 const { v4: uuidv4 } = require("uuid");
-const {
-  hashPassword,
-  verifPassword,
-  JWTTokenCreator,
-} = require("../services/services");
+
 const models = require("../models");
 
-class UsersController {
+class EquipesController {
   static add = (req, res) => {
-    const hashedPassword = hashPassword(req.body.password);
     req.body = {
       ...req.body,
-      password: hashedPassword,
       id: uuidv4(),
-      isadmin: 0,
     };
-    const user = req.body;
-    models.users
-      .insert(user)
+    const equipe = req.body;
+    models.equipes
+      .insert(equipe)
       .then(([result]) => {
-        res.status(201).send({ ...user, id: result.insertId });
+        res.status(201).send({ ...equipe, id: result.insertId });
       })
       .catch((err) => {
         console.error(err);
         res.sendStatus(500);
-      });
-  };
-
-  static session = (req, res) => {
-    models.users
-      .find(req.body.id)
-      .then((resUser) => {
-        return resUser[0][0];
-      })
-      .then((user) => {
-        if (verifPassword(req.body.password, user.password)) {
-          const token = JWTTokenCreator(user.email, user.pseudo);
-          res
-            .status(201)
-            .cookie("lotobowl_user", token, {
-              httpOnly: true,
-              expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
-            })
-            .json({
-              message: "Le mot de passe est correct",
-              cookie: token,
-              email: user.email,
-              pseudo: user.pseudo,
-            });
-        } else {
-          res.status(401).send("Email ou mot de passe incorect");
-        }
-      })
-      .catch(() => {
-        res.status(401).send("Email ou mot de passe incorect");
       });
   };
 
@@ -124,4 +87,4 @@ class UsersController {
   */
 }
 
-module.exports = UsersController;
+module.exports = EquipesController;
