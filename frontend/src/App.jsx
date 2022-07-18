@@ -1,12 +1,20 @@
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+
 import Home from "@pages/Home";
 
-import "./App.css";
+import "@styles/App.css";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  // const { ??? } = useContext(ExportContext.Context);
   return (
     <div className="App">
-      <Home />
-      <p>coucou</p>
+      <Routes>
+        <Route path="/*" element={<Home />} />
+      </Routes>
+      <ToastContainer />
     </div>
   );
 }

@@ -17,6 +17,7 @@
   },
   "plugins": ["react", "import"],
   "rules": {
+    "react/prop-types": 0,
     "no-console": "off",
     "no-restricted-syntax": [
       "error",
@@ -33,7 +34,12 @@
       {
         "assert": "either"
       }
-    ]
+    ],
+    "react/jsx-no-constructed-context-values": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "no-plusplus": "off",
+    "radix": "off"
   },
   "settings": {
     "import/resolver": {
@@ -42,7 +48,8 @@
           "@assets": "./src/assets",
           "@components": "./src/components",
           "@pages": "./src/pages",
-          "@services": "./src/services"
+          "@services": "./src/services",
+          "@styles": "./src/styles"
         },
         "extensions": [".js", ".jsx"]
       }
