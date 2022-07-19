@@ -20,9 +20,8 @@ class EquipesController {
       });
   };
 
-  /*
   static browse = (req, res) => {
-    models.users
+    models.equipes
       .findAll()
       .then(([rows]) => {
         res.send(rows);
@@ -32,7 +31,7 @@ class EquipesController {
         res.sendStatus(500);
       });
   };
-
+  /*
   static read = (req, res) => {
     models.users
       .find(req.params.id)

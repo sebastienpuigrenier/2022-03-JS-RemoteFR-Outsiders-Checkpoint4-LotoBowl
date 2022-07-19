@@ -20,7 +20,10 @@ class MatchsManager extends AbstractManager {
 
   findByJournee(journee) {
     return this.connection.query(
-      `SELECT * FROM ${this.table} WHERE journee_id = ?`,
+      `SELECT matchs.*, equipe1.nom as equipe1_nom, equipe2.nom as equipe2_nom FROM matchs
+      INNER JOIN equipes AS equipe1 ON equipe1.id = matchs.equipe1_id
+      INNER JOIN equipes AS equipe2 ON equipe2.id = matchs.equipe2_id
+      WHERE matchs.journee_id = ?`,
       [journee]
     );
   }

@@ -20,7 +20,7 @@ class MatchsController {
       });
   };
 
-  static browse = (req, res) => {
+  static browsebyjournee = (req, res) => {
     const { journee } = req.params;
     models.matchs
       .findByJournee(journee)

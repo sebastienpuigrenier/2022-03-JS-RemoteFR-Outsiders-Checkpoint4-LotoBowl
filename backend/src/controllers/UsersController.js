@@ -57,6 +57,9 @@ class UsersController {
       });
   };
 
+  static logout = (req, res) => {
+    res.clearCookie(req.cookies.lotobowl_user).sendStatus(200);
+  };
   /*
   static browse = (req, res) => {
     models.users
