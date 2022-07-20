@@ -3,7 +3,10 @@ import React, { useState, createContext } from "react";
 const Context = createContext();
 
 function Provider({ children }) {
-  const [infoUser, setInfoUser] = useState({});
+  const [infoUser, setInfoUser] = useState({
+    email: sessionStorage.getItem("email"),
+    pseudo: sessionStorage.getItem("pseudo"),
+  });
 
   // useEffect(() => {}, []);
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   notifySuccess,
   notifyError,
@@ -8,9 +8,12 @@ import {
 
 import MatchCard from "@components/MatchCard";
 
+import ExportContext from "../contexts/Context";
+
 // import "./MatchList.css";
 
 function MatchList() {
+  const { infoUser } = useContext(ExportContext.Context);
   const [matchs, setMatchs] = useState([]);
   const [thisJournee, setThisJournee] = useState(0);
   const [listeJournee, setListeJournee] = useState([]);
@@ -70,6 +73,7 @@ function MatchList() {
     for (let i = 0; i < listeParis.length; i++) {
       const ENDPOINT = "/new_bet";
       const newParis = {
+        email: infoUser.email,
         match_id: listeParis[i],
         somme: listeSommes[`paris-${listeParis[i]}`],
         pari_victoire_e1:

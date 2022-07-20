@@ -4,7 +4,7 @@ class ParisController {
   static add = (req, res) => {
     const pari = {
       ...req.body,
-      user_id: "49a67d32-3ad7-429d-81c0-22a0edffd658",
+      user_id: req.body.id,
     };
     models.paris
       .insert(pari)

@@ -31,6 +31,6 @@ router.get("/view_match/:id", MatchsController.browsebyid);
 router.get("/view_matchs/:journee", MatchsController.browsebyjournee);
 router.post("/create_match", MatchsController.add);
 
-router.post("/new_bet", ParisController.add);
+router.post("/new_bet", idFromEmailMiddleware, ParisController.add);
 
 module.exports = router;
