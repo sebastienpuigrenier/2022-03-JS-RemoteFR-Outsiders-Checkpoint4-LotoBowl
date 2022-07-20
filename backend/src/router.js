@@ -16,6 +16,7 @@ const {
 
 router.post("/create_user", UsersController.add);
 router.post("/login", idFromEmailMiddleware, UsersController.session);
+router.post("/logout", UsersController.logout);
 
 router.get("/browse_team", EquipesController.browse);
 router.post("/create_team", EquipesController.add);

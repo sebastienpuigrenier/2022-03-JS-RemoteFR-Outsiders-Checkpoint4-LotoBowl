@@ -1,0 +1,21 @@
+.navbar-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 1rem;
+}
+
+.navbar-logo{
+  height: 2.5rem;
+
+}
+
+.navbar-logo-img{
+  height: 100%;
+}
+
+.navbar-profil{
+  font-size: 2.5rem;
+
+}

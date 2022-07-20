@@ -2,7 +2,7 @@ const AbstractManager = require("./AbstractManager");
 
 class UsersManager extends AbstractManager {
   static table = "users";
-
+/* eslint-disable */
   insert(user) {
     return this.connection.query(
       `insert into ${this.table} (id, pseudo, email, avatar, password, isadmin) values (?, ?, ?, ?, ?, ?)`,
@@ -17,6 +17,12 @@ class UsersManager extends AbstractManager {
     );
   }
 
+  findByEmail(user) {
+    return this.connection.query(
+      `SELECT * from users WHERE email = ?`,
+      user
+    );
+  }
   /*
   update(item) {
     return this.connection.query(
@@ -25,6 +31,7 @@ class UsersManager extends AbstractManager {
     );
   }
   */
+ /* eslint-enable */
 }
 
 module.exports = UsersManager;

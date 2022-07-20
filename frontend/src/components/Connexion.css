@@ -1,0 +1,4 @@
+.connexion-fom-container{
+  display: flex;
+  flex-direction: column;
+}
