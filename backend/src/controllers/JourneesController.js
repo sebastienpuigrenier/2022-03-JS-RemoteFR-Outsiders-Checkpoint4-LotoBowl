@@ -45,6 +45,19 @@ class JourneesController {
         res.sendStatus(500);
       });
   };
+
+  static close = (req, res) => {
+    const { id } = req.params;
+    models.journees
+      .close(id)
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
   /*
   static read = (req, res) => {
     models.users

@@ -17,6 +17,14 @@ class JourneesManager extends AbstractManager {
     );
   }
 
+  close(journeeId) {
+    return this.connection.query(
+      `UPDATE ${this.table} SET is_closed = 1
+       WHERE id = ?`,
+      journeeId
+    );
+  }
+
   /*
   update(item) {
     return this.connection.query(

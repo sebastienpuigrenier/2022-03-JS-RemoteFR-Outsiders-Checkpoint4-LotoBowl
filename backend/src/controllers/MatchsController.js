@@ -39,6 +39,19 @@ class MatchsController {
         res.sendStatus(500);
       });
   };
+
+  static update = (req, res) => {
+    const match = req.body;
+    models.matchs
+      .update(match)
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
   /*
   static read = (req, res) => {
     models.users

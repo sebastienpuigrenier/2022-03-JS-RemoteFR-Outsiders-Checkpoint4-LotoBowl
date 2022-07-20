@@ -60,7 +60,7 @@ class UsersController {
   static logout = (req, res) => {
     res.clearCookie(req.cookies.lotobowl_user).sendStatus(200);
   };
-  /*
+
   static browse = (req, res) => {
     models.users
       .findAll()
@@ -72,7 +72,7 @@ class UsersController {
         res.sendStatus(500);
       });
   };
-
+  /*
   static read = (req, res) => {
     models.users
       .find(req.params.id)

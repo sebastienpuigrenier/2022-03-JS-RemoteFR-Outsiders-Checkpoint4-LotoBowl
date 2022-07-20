@@ -9,6 +9,7 @@ import Footer from "@components/Footer";
 
 import Connexion from "@pages/Connexion";
 import AdminCreation from "@pages/AdminCreation";
+import AdminClose from "@pages/AdminClose";
 import MatchList from "@pages/MatchList";
 
 import ExportContext from "./contexts/Context";
@@ -27,6 +28,7 @@ function App() {
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/liste_des_matchs" element={<MatchList />} />
         <Route path="/backoffice/creation" element={<AdminCreation />} />
+        <Route path="/backoffice/finalisation" element={<AdminClose />} />
       </Routes>
       <Footer />
       <ToastContainer />

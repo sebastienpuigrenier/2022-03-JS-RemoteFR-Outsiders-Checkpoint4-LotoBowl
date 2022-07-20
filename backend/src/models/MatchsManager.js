@@ -28,6 +28,19 @@ class MatchsManager extends AbstractManager {
     );
   }
 
+  update(match) {
+    return this.connection.query(
+      `UPDATE ${this.table} SET td_equipe_1 = ?, td_equipe_2 = ?, sorties_equipe_1 = ?, sorties_equipe_2 = ?
+       WHERE id = ?`,
+      [
+        match.td_equipe_1,
+        match.td_equipe_2,
+        match.sorties_equipe_1,
+        match.sorties_equipe_2,
+        match.id,
+      ]
+    );
+  }
   /*
   update(item) {
     return this.connection.query(

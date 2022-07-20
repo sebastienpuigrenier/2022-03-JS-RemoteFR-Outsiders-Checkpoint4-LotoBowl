@@ -109,13 +109,17 @@ function MatchList() {
             onChange={(e) => handleChange(e)}
           >
             <option value="">--Choisir une journée de la liste--</option>
-            {listeJournee.map((journee) => {
-              return (
-                <option value={journee.id}>
-                  {journee.numero} - {journee.nom}
-                </option>
-              );
-            })}
+            {listeJournee
+              .filter((journee) => {
+                return !journee.is_closed;
+              })
+              .map((journee) => {
+                return (
+                  <option value={journee.id}>
+                    {journee.numero} - {journee.nom}
+                  </option>
+                );
+              })}
           </select>
         </label>
         {matchs.map((match) => {
