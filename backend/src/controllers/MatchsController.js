@@ -1,13 +1,7 @@
-const { v4: uuidv4 } = require("uuid");
-
 const models = require("../models");
 
 class MatchsController {
   static add = (req, res) => {
-    req.body = {
-      ...req.body,
-      id: uuidv4(),
-    };
     const match = req.body;
     models.matchs
       .insert(match)

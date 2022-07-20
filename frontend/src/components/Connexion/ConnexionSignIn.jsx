@@ -29,7 +29,7 @@ function ConnexionLogIn() {
     <div className="connexion-sigin-container">
       <h2>Créer un compte</h2>
       <form
-        className="connexion-fom-container"
+        className="connexion-form-container"
         action="post"
         onSubmit={(e) => handleSubmit(e)}
       >

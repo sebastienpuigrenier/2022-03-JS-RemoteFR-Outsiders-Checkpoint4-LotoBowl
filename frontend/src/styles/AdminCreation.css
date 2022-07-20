@@ -1,0 +1,11 @@
+.admincreation-journee {
+  display: flex;
+  justify-content: space-around;
+}
+
+.admincreation-journee-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}

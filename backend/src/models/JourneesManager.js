@@ -5,12 +5,13 @@ class JourneesManager extends AbstractManager {
 
   insert(journee) {
     return this.connection.query(
-      `insert into ${this.table} (id, numero, is_closed) values (?, ?, ?)`,
+      `insert into ${this.table} (id, numero, is_closed, nom) values (?, ?, ?, ?)`,
       /* eslint-disable */
       [
         journee.id,
         journee.numero,
         journee.is_closed,
+        journee.nom,
       ]
       /* eslint-enable */
     );

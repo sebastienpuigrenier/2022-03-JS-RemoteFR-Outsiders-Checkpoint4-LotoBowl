@@ -49,7 +49,8 @@
           "@components": "./src/components",
           "@pages": "./src/pages",
           "@services": "./src/services",
-          "@styles": "./src/styles"
+          "@styles": "./src/styles",
+          "@contexts": "./src/scontexts"
         },
         "extensions": [".js", ".jsx"]
       }

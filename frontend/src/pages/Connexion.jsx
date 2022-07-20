@@ -1,9 +1,9 @@
 import React from "react";
 
-import ConnexionLogIn from "@components/ConnexionLogIn";
-import ConnexionSignIn from "@components/ConnexionSignIn";
+import ConnexionLogIn from "@components/Connexion/ConnexionLogIn";
+import ConnexionSignIn from "@components/Connexion/ConnexionSignIn";
 
-import "./Connexion.css";
+import "@styles/Connexion.css";
 
 function Connexion() {
   return (

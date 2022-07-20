@@ -31,6 +31,19 @@ class EquipesController {
         res.sendStatus(500);
       });
   };
+
+  static browseOne = (req, res) => {
+    const teamId = req.params.id;
+    models.equipes
+      .find(teamId)
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
   /*
   static read = (req, res) => {
     models.users

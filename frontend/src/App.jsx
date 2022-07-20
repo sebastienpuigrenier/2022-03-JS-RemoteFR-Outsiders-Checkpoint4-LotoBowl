@@ -7,7 +7,8 @@ import Home from "@pages/Home";
 import NavBar from "@components/NavBar";
 import Footer from "@components/Footer";
 
-import Connexion from "@components/Connexion";
+import Connexion from "@pages/Connexion";
+import AdminCreation from "@pages/AdminCreation";
 
 import "@styles/App.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/*" element={<Home />} />
         <Route path="/connexion" element={<Connexion />} />
+        <Route path="/backoffice/creation" element={<AdminCreation />} />
       </Routes>
       <Footer />
       <ToastContainer />

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { notifySuccess, notifyError, api } from "@services/services";
 
-import ExportContext from "../contexts/Context";
+import ExportContext from "../../contexts/Context";
 
 function ConnexionLogIn() {
   const { setInfoUser } = useContext(ExportContext.Context);
@@ -38,7 +38,7 @@ function ConnexionLogIn() {
     <div className="connexion-login-container">
       <h2>Déjà membre ?</h2>
       <form
-        className="connexion-fom-container"
+        className="connexion-form-container"
         method="post"
         onSubmit={(e) => handleSubmit(e)}
       >

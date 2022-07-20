@@ -21,9 +21,8 @@ class JourneesController {
       });
   };
 
-  /*
   static browse = (req, res) => {
-    models.users
+    models.journees
       .findAll()
       .then(([rows]) => {
         res.send(rows);
@@ -34,6 +33,19 @@ class JourneesController {
       });
   };
 
+  static browseOne = (req, res) => {
+    const journeeId = req.params.id;
+    models.journees
+      .find(journeeId)
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+  /*
   static read = (req, res) => {
     models.users
       .find(req.params.id)
