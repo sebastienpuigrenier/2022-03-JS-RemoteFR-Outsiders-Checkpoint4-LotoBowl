@@ -1,12 +1,15 @@
 const models = require("../models");
 
-class MatchsController {
+class ParisController {
   static add = (req, res) => {
-    const match = req.body;
-    models.matchs
-      .insert(match)
+    const pari = {
+      ...req.body,
+      user_id: "49a67d32-3ad7-429d-81c0-22a0edffd658",
+    };
+    models.paris
+      .insert(pari)
       .then(([result]) => {
-        res.status(201).send({ ...match, id: result.insertId });
+        res.status(201).send({ ...pari, id: result.insertId });
       })
       .catch((err) => {
         console.error(err);
@@ -14,31 +17,6 @@ class MatchsController {
       });
   };
 
-  static browsebyjournee = (req, res) => {
-    const { journee } = req.params;
-    models.matchs
-      .findByJournee(journee)
-      .then(([rows]) => {
-        res.send(rows);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
-  };
-
-  static browsebyid = (req, res) => {
-    const { id } = req.params;
-    models.matchs
-      .find(id)
-      .then(([rows]) => {
-        res.send(rows);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
-  };
   /*
   static read = (req, res) => {
     models.users
@@ -94,4 +72,4 @@ class MatchsController {
   */
 }
 
-module.exports = MatchsController;
+module.exports = ParisController;

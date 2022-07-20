@@ -14,4 +14,14 @@ const notifyError = (message) => {
   toast.error(`Erreur : ${message}`);
 };
 
-export { notifySuccess, notifyError, api };
+const numberOfProps = (object) => {
+  let count = 0;
+  for (const prop in object) {
+    if (Object.prototype.hasOwnProperty.call(object, prop)) {
+      count++;
+    }
+  }
+  return count;
+};
+
+export { notifySuccess, notifyError, api, numberOfProps };

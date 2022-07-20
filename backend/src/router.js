@@ -5,6 +5,7 @@ const {
   EquipesController,
   JourneesController,
   MatchsController,
+  ParisController,
 } = require("./controllers");
 
 const router = express.Router();
@@ -26,7 +27,10 @@ router.get("/browse_journee", JourneesController.browse);
 router.get("/browse_one_journee/:id", JourneesController.browseOne);
 router.post("/create_journee", JourneesController.add);
 
-router.get("/view_match/:journee", MatchsController.browsebyjournee);
+router.get("/view_match/:id", MatchsController.browsebyid);
+router.get("/view_matchs/:journee", MatchsController.browsebyjournee);
 router.post("/create_match", MatchsController.add);
+
+router.post("/new_bet", ParisController.add);
 
 module.exports = router;

@@ -113,7 +113,7 @@ function AdminCreationMatch() {
     }
     /* eslint-disable */
     const matchToCreate = {
-      id: newMatch.journee_id + " - " + newMatch.equipe1_id + " - " + newMatch.equipe2_id,
+      id: newMatch.journee_id + "-" + newMatch.equipe1_id + "-" + newMatch.equipe2_id,
       equipe1_id: newMatch.equipe1_id,
       equipe2_id: newMatch.equipe2_id,
       journee_id: newMatch.journee_id,

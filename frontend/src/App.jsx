@@ -9,6 +9,7 @@ import Footer from "@components/Footer";
 
 import Connexion from "@pages/Connexion";
 import AdminCreation from "@pages/AdminCreation";
+import MatchList from "@pages/MatchList";
 
 import "@styles/App.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/*" element={<Home />} />
         <Route path="/connexion" element={<Connexion />} />
+        <Route path="/liste_des_matchs" element={<MatchList />} />
         <Route path="/backoffice/creation" element={<AdminCreation />} />
       </Routes>
       <Footer />
