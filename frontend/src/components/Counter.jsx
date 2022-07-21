@@ -6,10 +6,11 @@ export default function Counter() {
   return (
     <p>
       <button
+        className="button-para"
         type="button"
         onClick={() => setCount((oldCount) => oldCount + 1)}
       >
-        count is: {count}
+        <p>count is: {count}</p>
       </button>
     </p>
   );

@@ -1,0 +1,430 @@
+@import url('https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap');
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+li {
+  list-style: none;
+}
+
+.title{
+  margin: 2rem auto;
+  padding: 0px 0 15px;
+  position: relative;
+  width: max-content;
+  }
+  
+  .title::before {
+    content: "";
+    position: absolute;
+    bottom: 16px;
+    width: 100%;
+    height: 14px;
+    transform: skew(-20deg) translateX(-0%);
+    background: rgba(238,111,87,0.5);
+    z-index: -1;
+  }
+  
+:root {
+  --navbar_height: 10rem;
+  --navbar_height_mobil: 6rem;
+  --footer_height: 6rem;
+  --main_container_height: calc(
+    100vh - var(--footer_height) - var(--navbar_height)
+  );
+  --main_container_height_mobil: calc(
+    100vh - var(--footer_height) - var(--navbar_height_mobil)
+  );
+  --main_container_height_mobil-with-menu: calc(
+    100vh - var(--footer_height) - 20rem
+  );
+  --color_blue: #3e3ff0;
+  --font-span: 'Holtwood One SC', serif;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.App {
+  min-height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.App::after {
+  content: "";
+  background-image: url(../assets/BB_background.jpg);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+@media screen and (min-width: 950px) {
+  .App::after {
+    content: "";
+    background-image: url(../assets/BB_background_desktop.jpg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+  }
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1rem;
+  font-family: 'Holtwood One SC', serif;
+}
+
+@media screen and (min-width: 950px) {
+  .App-header{
+    font-size: 3rem;
+  }
+  
+}
+
+.App-header img {
+  width: auto;
+  max-width: 80%;
+  max-height: 50vh;
+  border-radius: 2.5rem;
+  -webkit-box-shadow: 0px 15px 20px -3px rgba(161, 159, 159, 0.88);
+  box-shadow: 0px 15px 20px -3px rgba(161, 159, 159, 0.88);
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.display_none {
+  display: none;
+}
+
+.main-container,
+.main-container-with-menu {
+  overflow-y: auto;
+  height: var(--main_container_height_mobil);
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.main-container {
+  height: var(--main_container_height_mobil);
+}
+
+.main-container-with-menu {
+  height: var(--main_container_height_mobil-with-menu);
+}
+
+@media screen and (min-width: 950px) {
+  .main-container {
+    height: var(--main_container_height);
+  }
+}
+
+footer {
+  height: var(--footer_height);
+}
+
+.button-para {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  transition: 0.3s;
+  border: 1px solid black;
+  border-radius: 0.2rem;
+  background-color: var(--color_blue);
+  text-align: center;
+  color: #ffffff;
+  padding: 1rem 3rem;
+  margin: 1rem 1rem;
+  box-shadow: 10px 10px 0px 0px rgb(0 0 0 / 50%);
+  transform: skew(-20deg);
+}
+
+.button-admin {
+  background-color: rgb(177, 53, 53);
+}
+
+.button-disabled {
+  background-color: rgb(121, 111, 111);
+  color: black;
+}
+
+.button-ok {
+  font-size: 1.4rem;
+  width: 80%;
+  margin: 1rem auto;
+}
+
+.button-ok-demi {
+  font-size: 1rem;
+  width: 70%;
+  margin: 1rem auto;
+}
+@media screen and (min-width: 950px) {
+  .button-ok {
+    width: 25%;
+  }
+  .button-ok-demi {
+    font-size: 1.4rem;
+    width: 80%;
+  }
+}
+
+.button-para:hover {
+  background-color: salmon;
+  box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 50%);
+}
+
+.button-disabled:hover {
+  background-color: rgb(121, 111, 111);
+  color: black;
+  box-shadow: 10px 10px 0px 0px rgb(0 0 0 / 50%);
+}
+
+.button-para p {
+  transform: skew(20deg);
+}
+
+.select-menu {
+  max-width: 90%;
+  background-color: var(--color_blue);
+  color: white;
+  padding: 1rem;
+  padding-right: 3rem;
+  margin-bottom: 1rem;
+  border: none;
+  font-size: 1rem;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  outline: none;
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+  background-image: url("../../src/assets/arrow-icon.png");
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+  transform: skew(-20deg);
+}
+
+@media screen and (min-width: 950px) {
+  .select-menu {
+    font-size: 1.2rem;
+  }
+}
+
+.select-menu .select-p {
+  transform: skew(20deg);
+}
+
+/*
+** Recap.css
+*/
+
+@media screen and (min-width: 950px) {
+  .match-recap-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .calcul-gain-gain {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.match-recap-header-select {
+  width: 100%;
+}
+
+.calcul-gain-résumé {
+  width: 9rem;
+}
+
+.match-recap-somme {
+  display: flex;
+  flex-direction: column;
+}
+
+.match-recap-recap {
+  width: 60%;
+  background-color: salmon;
+  font-weight: 700;
+}
+
+.input-table {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 950px) {
+  .input-table {
+    width: 40vh;
+  }
+}
+
+.input-resultat {
+  width: 30%;
+}
+
+.input-table h2 {
+  margin: auto;
+}
+
+.recap-equipe1-mobil {
+  margin: 0 auto 0 0;
+  width: 40%;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.recap-equipe2-mobil {
+  margin: 0 0 0 auto;
+  width: 40%;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.recap-display-none {
+  display: none;
+}

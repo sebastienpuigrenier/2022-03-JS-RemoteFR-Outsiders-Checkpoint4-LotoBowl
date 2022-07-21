@@ -1,0 +1,105 @@
+.match-card-container {
+  width: 100%;
+  margin: 1rem auto;
+  padding: 2rem 0;
+  background: #f2f2f2;
+  border-radius: 20px;
+  box-shadow: 0 0 20px 8px #d0d0d0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vs {
+  margin: 1rem auto;
+}
+@media screen and (min-width: 950px) {
+  .match-card-container {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }
+}
+
+.match-card-field {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3.5rem;
+  padding: 0.25rem;
+  background-color: rgba(229, 231, 235, 1);
+  border-radius: 0.375rem;
+  font-weight: 600;
+  margin: 1 auto;
+}
+
+@media screen and (min-width: 950px) {
+  .match-card-field {
+    width: 25%;
+  }
+}
+
+.match-card-field li {
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+}
+
+.match-card-field li input:checked + label {
+  color: inherit;
+  background-color: #ffffff;
+  color: salmon;
+  display: flex;
+  align-items: center;
+}
+
+.match-card-field li input:not(:checked) + label {
+  --bg-opacity: 0;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+}
+
+.match-card-field label {
+  border-radius: 0.25rem;
+  cursor: pointer;
+  height: 2rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  line-height: 1.5rem;
+  color: rgba(75, 85, 99, 1);
+}
+
+.match-card-field label:hover {
+  color: black;
+  font-weight: 700;
+}
+@media screen and (min-width: 950px) {
+  .match-card-label {
+    display: flex;
+    align-items: center;
+  }
+}
+.match-card-container input[type="number"] {
+  height: 5vh;
+  font-size: 1rem;
+  text-align: right;
+  margin: 1rem auto;
+  width: 10rem;
+}
+
+.match-card-container input[type="radio"] {
+  visibility: hidden;
+  display: none;
+}
+
+.pari-bloc{
+  width: 12rem;
+}

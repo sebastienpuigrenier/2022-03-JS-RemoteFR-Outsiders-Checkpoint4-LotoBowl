@@ -1,0 +1,28 @@
+.match-list-regles {
+  width: 80%;
+  margin: 1rem auto;
+  padding: 2rem 0;
+  background: #f2f2f2;
+  border-radius: 20px;
+  box-shadow: 0 0 20px 8px #d0d0d0;
+}
+@media screen and (min-width: 950px) {
+  .match-list-regles {
+    width: 60%;
+  }
+}
+
+.match-list-container h2 {
+  margin-bottom: 2rem;
+}
+
+.match-list-li {
+  list-style: none;
+}
+
+.admincreation-match-form {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
