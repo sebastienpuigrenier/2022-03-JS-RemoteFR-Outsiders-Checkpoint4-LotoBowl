@@ -14,22 +14,18 @@ function AdminCreationMatch(update) {
   useEffect(() => {
     const ENDPOINT = "/browse_journee";
     /* eslint-disable */
-    api
-      .get(ENDPOINT)
-      .then((res) => {
-        setListeJournee(res.data)
-      })
+    api.get(ENDPOINT).then((res) => {
+      setListeJournee(res.data);
+    });
   }, [update]);
   /* eslint-enable */
 
   useEffect(() => {
     const ENDPOINT = "/browse_team";
     /* eslint-disable */
-    api
-      .get(ENDPOINT)
-      .then((res) => {
-        setListeEquipe(res.data)
-      })
+    api.get(ENDPOINT).then((res) => {
+      setListeEquipe(res.data);
+    });
   }, [update]);
   /* eslint-enable */
 
@@ -113,14 +109,19 @@ function AdminCreationMatch(update) {
     }
     /* eslint-disable */
     const matchToCreate = {
-      id: newMatch.journee_id + "-" + newMatch.equipe1_id + "-" + newMatch.equipe2_id,
+      id:
+        newMatch.journee_id +
+        "-" +
+        newMatch.equipe1_id +
+        "-" +
+        newMatch.equipe2_id,
       equipe1_id: newMatch.equipe1_id,
       equipe2_id: newMatch.equipe2_id,
       journee_id: newMatch.journee_id,
       cote_v_equipe_1: cote1,
       cote_v_equipe_2: cote2,
       cote_egalite: coteN,
-    }
+    };
     /* eslint-enable */
     const ENDPOINT = "create_match";
     api

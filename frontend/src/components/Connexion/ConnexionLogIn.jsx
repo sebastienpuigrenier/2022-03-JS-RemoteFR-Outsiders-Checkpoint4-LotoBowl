@@ -86,11 +86,11 @@ function ConnexionLogIn() {
         </label>
         <button
           id="sign-in"
-          className="button-validation"
+          className="button-para button-ok-demi"
           type="submit"
           required
         >
-          Se connecter
+          <p>Se connecter</p>
         </button>
       </form>
     </div>

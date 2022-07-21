@@ -6,7 +6,9 @@ import {
   numberOfProps,
 } from "@services/services";
 
-import MatchCard from "@components/MatchCard";
+import MatchCard from "@components/MatchCard/MatchCard";
+
+import "@styles/MatchList.css";
 
 import ExportContext from "../contexts/Context";
 
@@ -26,11 +28,9 @@ function MatchList() {
   useEffect(() => {
     const ENDPOINT = "/browse_journee";
     /* eslint-disable */
-    api
-      .get(ENDPOINT)
-      .then((res) => {
-        setListeJournee(res.data)
-      })
+    api.get(ENDPOINT).then((res) => {
+      setListeJournee(res.data);
+    });
   }, []);
   /* eslint-enable */
 
@@ -95,7 +95,24 @@ function MatchList() {
     }
   };
   return (
-    <>
+    <div className="match-list-container">
+      <div className="match-list-regles">
+        <h2>Rappel des règles des paris :</h2>
+        <ul className="match-list-ul">
+          <li className="match-list-li">
+            Vous devez parier sur tous les matchs d'une journée
+          </li>
+          <li className="match-list-li">
+            Vous devez parier au minimum 1.000 po par match
+          </li>
+          <li className="match-list-li">
+            Les sommes parier seront prélevées dans votre trésorerie d'équipe
+          </li>
+          <li className="match-list-li">
+            Vous devez avoir les fonds nécessaires dans votre trésorerie
+          </li>
+        </ul>
+      </div>
       <form
         className="admincreation-match-form"
         method="post"
@@ -104,11 +121,12 @@ function MatchList() {
         <h2>Choisir une journée :</h2>
         <label htmlFor="journee_id">
           <select
+            className="select-menu"
             name="journee_id"
             id="journee_id"
             onChange={(e) => handleChange(e)}
           >
-            <option value="">--Choisir une journée de la liste--</option>
+            <option value="">-- Choisir une journée de la liste --</option>
             {listeJournee
               .filter((journee) => {
                 return !journee.is_closed;
@@ -125,29 +143,20 @@ function MatchList() {
         {matchs.map((match) => {
           listeParis.push(match.id);
           return (
-            <div>
-              <MatchCard
-                journee={match.journee_id}
-                equipe1={match.equipe1_id}
-                equipe2={match.equipe2_id}
-                handleChange={handleChangeRadio}
-              />
-              <label htmlFor="paris">
-                <input
-                  type="number"
-                  name={`paris-${match.journee_id}-${match.equipe1_id}-${match.equipe2_id}`}
-                  id={`paris-${match.journee_id}-${match.equipe1_id}-${match.equipe2_id}`}
-                  placeholder="1.000 po minimum"
-                  onChange={(e) => handleChangeParis(e)}
-                />
-              </label>
-            </div>
+            <MatchCard
+              journee={match.journee_id}
+              equipe1={match.equipe1_id}
+              equipe2={match.equipe2_id}
+              handleChange={handleChangeRadio}
+              handleChangeParis={handleChangeParis}
+            />
           );
         })}
-        <button type="submit">Valider mes paris</button>
+        <button className="button-para button-ok" type="submit">
+          <p>Valider mes paris</p>
+        </button>
       </form>
-      <div>To deleted if not needed</div>
-    </>
+    </div>
   );
 }
 

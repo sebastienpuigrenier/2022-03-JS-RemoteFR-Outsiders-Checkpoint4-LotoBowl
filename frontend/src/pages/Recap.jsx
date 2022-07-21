@@ -3,7 +3,7 @@ import { api } from "@services/services";
 
 import CalculGain from "@components/CalculGain";
 
-// import "./Recap.css";
+import "@components/MatchCard/MatchCard.css";
 
 function Recap() {
   const [listeJournee, setListeJournee] = useState([]);
@@ -18,22 +18,18 @@ function Recap() {
   useEffect(() => {
     const ENDPOINT = "/browse_journee";
     /* eslint-disable */
-    api
-      .get(ENDPOINT)
-      .then((res) => {
-        setListeJournee(res.data)
-      })
+    api.get(ENDPOINT).then((res) => {
+      setListeJournee(res.data);
+    });
   }, []);
   /* eslint-enable */
 
   useEffect(() => {
     const ENDPOINT = "/browse_users";
     /* eslint-disable */
-    api
-      .get(ENDPOINT)
-      .then((res) => {
-        setListeUsers(res.data)
-      })
+    api.get(ENDPOINT).then((res) => {
+      setListeUsers(res.data);
+    });
   }, []);
   /* eslint-enable */
 
@@ -71,45 +67,52 @@ function Recap() {
   }, [thisJournee, thisUsers]);
 
   return (
-    <>
-      <h2>Choisir une journée :</h2>
-      <label htmlFor="journee_id">
-        <select
-          name="journee_id"
-          id="journee_id"
-          onChange={(e) => handleChange(e)}
-        >
-          <option value="">--Choisir une journée de la liste--</option>
-          {listeJournee
-            .filter((journee) => {
-              return journee.is_closed;
-            })
-            .map((journee) => {
-              return (
-                <option value={journee.id}>
-                  {journee.numero} - {journee.nom}
-                </option>
-              );
-            })}
-        </select>
-      </label>
-      <h2>Choisir un utilisateur :</h2>
-      <label htmlFor="utilisateur_id">
-        <select
-          name="utilisateur_id"
-          id="utilisateur_id"
-          onChange={(e) => handleChangeUser(e)}
-        >
-          <option value="">--Choisir un utilisateur de la liste--</option>
-          {listeUsers.map((user) => {
-            return <option value={user.id}>{user.pseudo}</option>;
-          })}
-        </select>
-      </label>
-      <div>To deleted</div>
+    <div className="match-list-container">
+      <div className="match-recap-header">
+        <div className="match-recap-header-select">
+          <h2>Choisir une journée :</h2>
+          <label htmlFor="journee_id">
+            <select
+              className="select-menu"
+              name="journee_id"
+              id="journee_id"
+              onChange={(e) => handleChange(e)}
+            >
+              <option value="">--Choisir une journée de la liste--</option>
+              {listeJournee
+                .filter((journee) => {
+                  return journee.is_closed;
+                })
+                .map((journee) => {
+                  return (
+                    <option value={journee.id}>
+                      {journee.numero} - {journee.nom}
+                    </option>
+                  );
+                })}
+            </select>
+          </label>
+        </div>
+        <div className="match-recap-header-select">
+          <h2>Choisir un utilisateur :</h2>
+          <label htmlFor="utilisateur_id">
+            <select
+              className="select-menu"
+              name="utilisateur_id"
+              id="utilisateur_id"
+              onChange={(e) => handleChangeUser(e)}
+            >
+              <option value="">--Choisir un utilisateur de la liste--</option>
+              {listeUsers.map((user) => {
+                return <option value={user.id}>{user.pseudo}</option>;
+              })}
+            </select>
+          </label>
+        </div>
+      </div>
       {listeParis.map((pari) => {
         return (
-          <div style={{ display: "flex" }}>
+          <div className="match-card-container">
             <div>
               <div>
                 {pari.nom_equipe1} coaché par {pari.coach_equipe1}
@@ -119,8 +122,8 @@ function Recap() {
                 {pari.nom_equipe2} coaché par {pari.coach_equipe2}
               </div>
             </div>
-            <div>
-              <div>Somme dépensée</div>
+            <div className="match-recap-somme">
+              <div>Somme dépensée :</div>
               <div>{pari.somme} po</div>
             </div>
             <CalculGain
@@ -141,9 +144,11 @@ function Recap() {
           </div>
         );
       })}
-      <div>Total Dépenses : {totalDepense} </div>
-      <div>Total Gains : {totalGain} </div>
-    </>
+      <div className="match-card-container match-recap-recap">
+        <div>Total Dépenses : {totalDepense} po</div>
+        <div>Total Gains : {totalGain} po</div>
+      </div>
+    </div>
   );
 }
 

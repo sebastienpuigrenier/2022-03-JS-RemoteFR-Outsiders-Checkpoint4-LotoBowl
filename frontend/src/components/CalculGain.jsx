@@ -46,9 +46,11 @@ function CalculGain({
 
   return (
     <>
-      <div>Gain :</div>
-      <div>{gain}</div>
-      <div>
+      <div className="calcul-gain-gain">
+        <div>Gain :</div>
+        <div>{gain}</div>
+      </div>
+      <div className="calcul-gain-résumé">
         {gain > 0 ? "Bien Joué" : "Désolé, l'argent reste à la banque !"}
       </div>
     </>

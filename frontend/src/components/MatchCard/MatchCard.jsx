@@ -1,9 +1,15 @@
 import { api } from "@services/services";
 import React, { useEffect, useState } from "react";
 
-// import "./MatchCard.css";
+import "./MatchCard.css";
 
-function MatchCard({ journee, equipe1, equipe2, handleChange }) {
+function MatchCard({
+  journee,
+  equipe1,
+  equipe2,
+  handleChange,
+  handleChangeParis,
+}) {
   const [match, setMatch] = useState({});
   const [matchEquipe1, setMatchEquipe1] = useState({});
   const [matchEquipe2, setMatchEquipe2] = useState({});
@@ -30,13 +36,20 @@ function MatchCard({ journee, equipe1, equipe2, handleChange }) {
       });
   }, []);
   return (
-    <div>
-      <h2>{journee.nom}</h2>
-      {matchEquipe1.nom} coaché par {matchEquipe1.coach} VS {matchEquipe2.nom}{" "}
-      coaché par {matchEquipe2.coach}
-      <fieldset>
-        <legend>Choisissez un résultat:</legend>
+    <div className="match-card-container">
+      <div>
+        <div className="match-card-equipe">
+          <div>{matchEquipe1.nom}</div>
+          coaché par {matchEquipe1.coach}
+        </div>
+        <div className="vs">VS</div>
         <div>
+          <div>{matchEquipe2.nom}</div>
+          <div>coaché par {matchEquipe2.coach}</div>
+        </div>
+      </div>
+      <ul className="match-card-field">
+        <li>
           <input
             type="radio"
             id={`paris-V1-${matchId}`}
@@ -45,10 +58,10 @@ function MatchCard({ journee, equipe1, equipe2, handleChange }) {
             onChange={handleChange}
           />
           <label htmlFor={`paris-V1-${matchId}`}>
-            1 / {match.cote_v_equipe_1}
+            1 // {match.cote_v_equipe_1}
           </label>
-        </div>
-        <div>
+        </li>
+        <li>
           <input
             type="radio"
             id={`paris-E-${matchId}`}
@@ -57,11 +70,11 @@ function MatchCard({ journee, equipe1, equipe2, handleChange }) {
             onChange={handleChange}
           />
           <label htmlFor={`paris-E-${matchId}`}>
-            N- / {match.cote_egalite}
+            N // {match.cote_egalite}
           </label>
-        </div>
+        </li>
 
-        <div>
+        <li>
           <input
             type="radio"
             id={`paris-V2-${matchId}`}
@@ -70,10 +83,19 @@ function MatchCard({ journee, equipe1, equipe2, handleChange }) {
             onChange={handleChange}
           />
           <label htmlFor={`paris-V2-${matchId}`}>
-            2 / {match.cote_v_equipe_2}
+            2 // {match.cote_v_equipe_2}
           </label>
-        </div>
-      </fieldset>
+        </li>
+      </ul>
+      <label htmlFor="paris" className="match-card-label">
+        <input
+          type="number"
+          name={`paris-${match.journee_id}-${match.equipe1_id}-${match.equipe2_id}`}
+          id={`paris-${match.journee_id}-${match.equipe1_id}-${match.equipe2_id}`}
+          placeholder="1.000 po minimum"
+          onChange={handleChangeParis}
+        />
+      </label>
     </div>
   );
 }

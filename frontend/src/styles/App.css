@@ -1,20 +1,104 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+li {
+  list-style: none;
+}
+:root {
+  --navbar_height: 10rem;
+  --navbar_height_mobil: 25rem;
+  --footer_height: 4rem;
+  --main_container_height: calc(
+    100vh - var(--footer_height) - var(--navbar_height)
+  );
+  --main_container_height_mobil: calc(
+    100vh - var(--footer_height) - var(--navbar_height_mobil)
+  );
+  --color_blue: #3e3ff0;
 }
 
 body {
@@ -41,7 +125,7 @@ code {
   position: relative;
 }
 
-.App::after{
+.App::after {
   content: "";
   background-image: url(../assets/BB_background.jpg);
   background-size: cover;
@@ -52,24 +136,23 @@ code {
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;   
+  z-index: -1;
 }
 
 @media screen and (min-width: 950px) {
-  
-.App::after{
-  content: "";
-  background-image: url(../assets/BB_background_desktop.jpg);
-  background-size: cover;
-  background-position: center;
-  opacity: 0.3;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;   
-}
+  .App::after {
+    content: "";
+    background-image: url(../assets/BB_background_desktop.jpg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+  }
 }
 
 .App-logo {
@@ -106,17 +189,191 @@ code {
   }
 }
 
-
-
 .display_none {
   display: none;
 }
 
 .main-container {
-  height: 100%;
+  overflow-y: auto;
+  height: var(--main_container_height_mobil);
   width: 90%;
   display: flex;
   flex-direction: column;
   align-content: center;
-  justify-content: center;
+}
+
+@media screen and (min-width: 950px) {
+  .main-container {
+    height: var(--main_container_height);
+  }
+}
+
+footer {
+  height: var(--footer_height);
+}
+
+.button-para {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  transition: 0.3s;
+  border: 1px solid black;
+  border-radius: 0.2rem;
+  background-color: var(--color_blue);
+  text-align: center;
+  color: #ffffff;
+  padding: 1rem 3rem;
+  margin: 1rem 1rem;
+  box-shadow: 10px 10px 0px 0px rgb(0 0 0 / 50%);
+  transform: skew(-20deg);
+}
+
+.button-admin {
+  background-color: rgb(177, 53, 53);
+}
+
+.button-disabled {
+  background-color: rgb(121, 111, 111);
+  color: black;
+}
+
+.button-ok {
+  font-size: 1.4rem;
+  width: 80%;
+  margin: 1rem auto;
+}
+
+.button-ok-demi {
+  font-size: 1rem;
+  width: 70%;
+  margin: 1rem auto;
+}
+@media screen and (min-width: 950px) {
+  .button-ok {
+    width: 25%;
+  }
+  .button-ok-demi {
+    font-size: 1.4rem;
+    width: 80%;
+  }
+}
+
+.button-para:hover {
+  background-color: salmon;
+  box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 50%);
+}
+
+.button-disabled:hover {
+  background-color: rgb(121, 111, 111);
+  color: black;
+  box-shadow: 10px 10px 0px 0px rgb(0 0 0 / 50%);
+}
+
+.button-para p {
+  transform: skew(20deg);
+}
+
+.select-menu {
+  max-width: 90%;
+  background-color: var(--color_blue);
+  color: white;
+  padding: 1rem;
+  padding-right: 3rem;
+  margin-bottom: 1rem;
+  border: none;
+  font-size: 1rem;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  outline: none;
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+  background-image: url("../../src/assets/arrow-icon.png");
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+  transform: skew(-20deg);
+}
+
+@media screen and (min-width: 950px) {
+  .select-menu {
+    font-size: 1.2rem;
+  }
+}
+
+.select-menu .select-p {
+  transform: skew(20deg);
+}
+
+/*
+** Recap.css
+*/
+
+@media screen and (min-width: 950px) {
+  .match-recap-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .calcul-gain-gain {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.match-recap-header-select {
+  width: 100%;
+}
+
+.calcul-gain-gain {
+  display: flex;
+}
+
+.calcul-gain-résumé {
+  width: 9rem;
+}
+
+.match-recap-somme {
+  display: flex;
+}
+
+.match-recap-recap {
+  width: 60%;
+  background-color: salmon;
+  font-weight: 700;
+}
+
+.input-table {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 950px) {
+  .input-table {
+    width: 40vh;
+  }
+}
+
+.input-resultat {
+  width: 30%;
+}
+
+.input-table h2 {
+  margin: auto;
+}
+
+.recap-equipe1-mobil {
+  margin: 0 auto 0 0;
+  width: 40%;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.recap-equipe2-mobil {
+  margin: 0 0 0 auto;
+  width: 40%;
+  padding: 0 1rem;
+  text-align: center;
 }

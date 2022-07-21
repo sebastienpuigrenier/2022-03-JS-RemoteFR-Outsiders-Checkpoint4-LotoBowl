@@ -6,7 +6,7 @@ import {
   numberOfProps,
 } from "@services/services";
 
-import MatchResultCard from "@components/MatchResultCard";
+import MatchResultCard from "@components/MatchCard/MatchResultCard";
 
 // import "./AdminClose.css";
 
@@ -20,11 +20,9 @@ function AdminClose() {
   useEffect(() => {
     const ENDPOINT = "/browse_journee";
     /* eslint-disable */
-    api
-      .get(ENDPOINT)
-      .then((res) => {
-        setListeJournee(res.data)
-      })
+    api.get(ENDPOINT).then((res) => {
+      setListeJournee(res.data);
+    });
   }, []);
   /* eslint-enable */
 
@@ -91,7 +89,7 @@ function AdminClose() {
   };
 
   return (
-    <>
+    <div className="match-list-container">
       <form
         className="admincreation-match-form"
         method="post"
@@ -100,6 +98,7 @@ function AdminClose() {
         <h2>Choisir une journée :</h2>
         <label htmlFor="journee_id">
           <select
+            className="select-menu"
             name="journee_id"
             id="journee_id"
             onChange={(e) => handleChange(e)}
@@ -132,10 +131,11 @@ function AdminClose() {
             </div>
           );
         })}
-        <button type="submit">Clore la journée et envoyer les résultats</button>
+        <button className="button-para button-ok" type="submit">
+          <p>Clore la journée et envoyer les résultats</p>
+        </button>
       </form>
-      <div>To deleted</div>
-    </>
+    </div>
   );
 }
 

@@ -8,11 +8,9 @@ function AdminCreationJournee(update, handleUpdate) {
   useEffect(() => {
     const ENDPOINT = "/browse_journee";
     /* eslint-disable */
-    api
-      .get(ENDPOINT)
-      .then((res) => {
-        setListeJournee(res.data)
-      })
+    api.get(ENDPOINT).then((res) => {
+      setListeJournee(res.data);
+    });
   }, [update]);
   /* eslint-enable */
 
