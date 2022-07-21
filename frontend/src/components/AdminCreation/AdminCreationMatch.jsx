@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { notifySuccess, notifyError, api } from "@services/services";
 
-function AdminCreationMatch() {
+function AdminCreationMatch(update) {
   const [newMatch, setNewMatch] = useState({});
   const [listeJournee, setListeJournee] = useState([]);
   const [listeEquipe, setListeEquipe] = useState([]);
@@ -19,7 +19,7 @@ function AdminCreationMatch() {
       .then((res) => {
         setListeJournee(res.data)
       })
-  }, []);
+  }, [update]);
   /* eslint-enable */
 
   useEffect(() => {
@@ -30,7 +30,7 @@ function AdminCreationMatch() {
       .then((res) => {
         setListeEquipe(res.data)
       })
-  }, []);
+  }, [update]);
   /* eslint-enable */
 
   useEffect(() => {

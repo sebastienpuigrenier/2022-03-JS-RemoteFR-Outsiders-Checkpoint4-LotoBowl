@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { notifySuccess, notifyError, api } from "@services/services";
 
-function AdminCreationJournee() {
+function AdminCreationJournee(update, handleUpdate) {
   const [listeJournee, setListeJournee] = useState([]);
   const [newJournee, setNewJournee] = useState({});
 
@@ -13,7 +13,7 @@ function AdminCreationJournee() {
       .then((res) => {
         setListeJournee(res.data)
       })
-  }, []);
+  }, [update]);
   /* eslint-enable */
 
   const handleChange = (e) => {
@@ -32,10 +32,13 @@ function AdminCreationJournee() {
         notifySuccess(
           `La journée ${res.data.numero} - ${res.data.nom} a été créée avec succès`
         );
+        /* eslint-disable */
+        /* eslint-enable */
+        e.target.reset();
       })
       .catch((err) => {
         notifyError("Une erreur s'est produite lors de la création.");
-        console.error(err.response.data);
+        console.error(err);
       });
   };
 
@@ -62,6 +65,7 @@ function AdminCreationJournee() {
           className="admincreation-journee-form"
           action="post"
           onSubmit={(e) => handleSubmit(e)}
+          onClick={handleUpdate}
         >
           <label htmlFor="numero">
             <input

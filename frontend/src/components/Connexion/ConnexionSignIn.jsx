@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { notifySuccess, notifyError, api } from "@services/services";
 
+import { IoCloseCircle, IoAddCircle } from "react-icons/io5";
+
 function ConnexionLogIn() {
   const [infoCreate, setInfoCreate] = useState({});
+  const [displayLogIn, setDisplayLogIn] = useState(false);
+
+  const handleShowLogIn = () => {
+    setDisplayLogIn(!displayLogIn);
+  };
 
   const handleChange = (e) => {
     setInfoCreate({
@@ -23,13 +30,28 @@ function ConnexionLogIn() {
         notifyError("Une erreur s'est produite lors de la connexion.");
         console.error(err.response.data);
       });
+    e.target.reset();
+    handleShowLogIn();
   };
 
   return (
     <div className="connexion-sigin-container">
-      <h2>Créer un compte</h2>
+      <div
+        className="connexion-bar"
+        onClick={handleShowLogIn}
+        role="button"
+        tabIndex="0"
+      >
+        <h2>Créer un compte</h2>
+        <div className="connexion-plus_icon">
+          <IoAddCircle className={`${displayLogIn ? "display_none" : ""}`} />
+          <IoCloseCircle className={`${!displayLogIn ? "display_none" : ""}`} />
+        </div>
+      </div>
       <form
-        className="connexion-form-container"
+        className={`connexion-form-container ${
+          !displayLogIn ? "display_none" : ""
+        }`}
         action="post"
         onSubmit={(e) => handleSubmit(e)}
       >
@@ -44,7 +66,7 @@ function ConnexionLogIn() {
         </label>
         <label htmlFor="signin-email">
           <input
-            type="signin-email"
+            type="email"
             name="email"
             id="signin-email"
             placeholder="Votre email"
@@ -53,7 +75,7 @@ function ConnexionLogIn() {
         </label>
         <label htmlFor="signin-password">
           <input
-            type="signin-password"
+            type="password"
             name="password"
             id="signin-password"
             placeholder="Mot de passe"
@@ -62,7 +84,7 @@ function ConnexionLogIn() {
         </label>
         <label htmlFor="signin-conf_password">
           <input
-            type="signin-conf_password"
+            type="password"
             name="conf_password"
             id="signin-conf_password"
             placeholder="Confirmer votre mot de passe"
@@ -75,7 +97,7 @@ function ConnexionLogIn() {
           type="submit"
           required
         >
-          Se connecter
+          S'inscrire
         </button>
       </form>
     </div>

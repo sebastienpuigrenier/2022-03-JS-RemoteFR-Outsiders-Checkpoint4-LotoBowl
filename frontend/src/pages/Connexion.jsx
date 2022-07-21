@@ -7,11 +7,13 @@ import "@styles/Connexion.css";
 
 function Connexion() {
   return (
-    <>
+    <div className="connexion-container">
       <h1>Bienvenu !</h1>
-      <ConnexionLogIn />
-      <ConnexionSignIn />
-    </>
+      <div className="connexion-forms-container">
+        <ConnexionLogIn />
+        <ConnexionSignIn />
+      </div>
+    </div>
   );
 }
 

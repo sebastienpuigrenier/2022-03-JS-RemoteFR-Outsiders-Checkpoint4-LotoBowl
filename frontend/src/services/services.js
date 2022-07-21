@@ -24,4 +24,17 @@ const numberOfProps = (object) => {
   return count;
 };
 
-export { notifySuccess, notifyError, api, numberOfProps };
+const Deconnexion = (navigate, setInfoUser) => {
+  const ENDPOINTDECONNEXION = "/logout";
+  api.post(ENDPOINTDECONNEXION).then((status) => {
+    if (status.status === 200) {
+      setInfoUser({});
+      sessionStorage.removeItem(`pseudo`);
+      sessionStorage.removeItem(`email`);
+      navigate("/");
+      notifySuccess("Déconnexion réussie !");
+    }
+  });
+};
+
+export { notifySuccess, notifyError, api, numberOfProps, Deconnexion };

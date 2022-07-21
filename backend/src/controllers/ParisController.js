@@ -17,6 +17,18 @@ class ParisController {
       });
   };
 
+  static browseJourneeUser = (req, res) => {
+    models.paris
+      .browseJourneeUser(req.params)
+      .then(([rows]) => {
+        res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   /*
   static read = (req, res) => {
     models.users

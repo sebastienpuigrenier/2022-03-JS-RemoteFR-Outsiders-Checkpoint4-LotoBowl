@@ -1,4 +1,6 @@
 .navbar-container{
+  width: 90%;
+  min-height: 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,6 +10,8 @@
 
 .navbar-logo{
   height: 2.5rem;
+  width: 2.5rem;
+  cursor: pointer;
 
 }
 

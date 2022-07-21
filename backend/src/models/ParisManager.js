@@ -17,6 +17,18 @@ class ParisManager extends AbstractManager {
     );
   }
 
+  browseJourneeUser(parisToShow) {
+    return this.connection.query(
+      `SELECT paris.*, matchs.*, journees.nom AS nom_journee, journees.numero AS numero_journee, equipe1.nom AS nom_equipe1, equipe1.coach AS coach_equipe1, equipe2.nom AS nom_equipe2, equipe2.coach AS coach_equipe2 FROM paris 
+      INNER JOIN matchs ON paris.match_id = matchs.id
+      INNER JOIN journees ON journees.id = matchs.journee_id
+      INNER JOIN equipes AS equipe1 ON matchs.equipe1_id = equipe1.id
+      INNER JOIN equipes AS equipe2 ON matchs.equipe2_id = equipe2.id
+      WHERE paris.user_id = ? AND journees.id = ?`,
+      [parisToShow.user_id, parisToShow.journee_id]
+    );
+  }
+
   /*
   update(item) {
     return this.connection.query(

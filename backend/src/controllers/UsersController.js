@@ -58,7 +58,8 @@ class UsersController {
   };
 
   static logout = (req, res) => {
-    res.clearCookie(req.cookies.lotobowl_user).sendStatus(200);
+    res.cookie("lotobowl_user", "").sendStatus(200);
+    // res.clearCookie(req.cookies.lotobowl_user).sendStatus(200);
   };
 
   static browse = (req, res) => {
