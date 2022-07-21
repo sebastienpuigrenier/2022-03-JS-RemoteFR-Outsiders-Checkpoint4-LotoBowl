@@ -37,7 +37,7 @@ function MatchCard({
   }, []);
   return (
     <div className="match-card-container">
-      <div>
+      <div className="pari-bloc">
         <div className="match-card-equipe">
           <div>{matchEquipe1.nom}</div>
           coaché par {matchEquipe1.coach}
@@ -87,7 +87,7 @@ function MatchCard({
           </label>
         </li>
       </ul>
-      <label htmlFor="paris" className="match-card-label">
+      <label htmlFor="paris" className=" pari-bloc match-card-label">
         <input
           type="number"
           name={`paris-${match.journee_id}-${match.equipe1_id}-${match.equipe2_id}`}

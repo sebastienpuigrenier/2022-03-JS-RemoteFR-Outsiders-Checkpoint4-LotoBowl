@@ -159,7 +159,19 @@ function MatchList() {
             />
           );
         })}
-        <button className="button-para button-ok" type="submit">
+        <button
+          className={`button-para button-ok ${
+            infoUser.pseudo === null || infoUser.pseudo === undefined
+              ? "button-disabled"
+              : ""
+          }`}
+          type="submit"
+          disabled={
+            infoUser.pseudo === null || infoUser.pseudo === undefined
+              ? "disabled"
+              : ""
+          }
+        >
           <p>Valider mes paris</p>
         </button>
       </form>

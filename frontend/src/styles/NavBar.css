@@ -3,15 +3,32 @@ nav {
   height: var(--navbar_height_mobil);
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.nav-admin{
+  height: 10rem;
+}
+
+.navbar-display-none {
+  display: none;
+}
+
+.nav-menu-is-visible{
+  height: 20rem;
 }
 
 @media screen and (min-width: 950px) {
   nav {
     height: var(--navbar_height);
   }
+  .navbar-arrow {
+    display: none;
+  }
 }
 .navbar-container {
+  margin-top: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -53,5 +70,10 @@ nav {
 
   .button-nav_mobil {
     display: none;
+  }
+
+  .navbar-buttons {
+    margin: 0 auto;
+    display: flex;
   }
 }

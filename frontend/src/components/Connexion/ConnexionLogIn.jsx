@@ -31,11 +31,11 @@ function ConnexionLogIn() {
         setInfoUser({
           pseudo: res.data.pseudo,
           email: res.data.email,
-          isadmin: res.data.isadmin,
+          isadmin: res.data.admin,
         });
         sessionStorage.setItem(`pseudo`, res.data.pseudo);
         sessionStorage.setItem(`email`, res.data.email);
-        sessionStorage.setItem(`isadmin`, res.data.isadmin);
+        sessionStorage.setItem(`isadmin`, res.data.admin);
         notifySuccess(`Vous êtes connecté en tant que ${res.data.pseudo}`);
         navigate("/");
       })

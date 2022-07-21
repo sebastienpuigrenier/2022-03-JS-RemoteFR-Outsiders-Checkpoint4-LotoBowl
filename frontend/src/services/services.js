@@ -31,6 +31,7 @@ const Deconnexion = (navigate, setInfoUser) => {
       setInfoUser({});
       sessionStorage.removeItem(`pseudo`);
       sessionStorage.removeItem(`email`);
+      sessionStorage.removeItem(`isadmin`);
       navigate("/");
       notifySuccess("Déconnexion réussie !");
     }

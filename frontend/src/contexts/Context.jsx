@@ -14,8 +14,10 @@ function Provider({ children }) {
   const [infoUser, setInfoUser] = useState({
     email: sessionStorage.getItem("email"),
     pseudo: sessionStorage.getItem("pseudo"),
+    isadmin: sessionStorage.getItem("isadmin"),
   });
   const [footerImg, setFooterImg] = useState("");
+  const [isVisible, setIsVisilbe] = useState(false);
 
   const rdnImg = Math.floor(Math.random() * 7);
   useEffect(() => {
@@ -46,12 +48,18 @@ function Provider({ children }) {
     }
   }, []);
 
+  const handleShowMenu = (boolean) => {
+    setIsVisilbe(boolean);
+  };
+
   return (
     <Context.Provider
       value={{
         infoUser,
         setInfoUser,
         footerImg,
+        isVisible,
+        handleShowMenu,
       }}
     >
       {children}

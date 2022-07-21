@@ -111,13 +111,16 @@ li {
   
 :root {
   --navbar_height: 10rem;
-  --navbar_height_mobil: 20rem;
+  --navbar_height_mobil: 6rem;
   --footer_height: 6rem;
   --main_container_height: calc(
     100vh - var(--footer_height) - var(--navbar_height)
   );
   --main_container_height_mobil: calc(
     100vh - var(--footer_height) - var(--navbar_height_mobil)
+  );
+  --main_container_height_mobil-with-menu: calc(
+    100vh - var(--footer_height) - 20rem
   );
   --color_blue: #3e3ff0;
   --font-span: 'Holtwood One SC', serif;
@@ -231,13 +234,22 @@ code {
   display: none;
 }
 
-.main-container {
+.main-container,
+.main-container-with-menu {
   overflow-y: auto;
   height: var(--main_container_height_mobil);
   width: 90%;
   display: flex;
   flex-direction: column;
   align-content: center;
+}
+
+.main-container {
+  height: var(--main_container_height_mobil);
+}
+
+.main-container-with-menu {
+  height: var(--main_container_height_mobil-with-menu);
 }
 
 @media screen and (min-width: 950px) {

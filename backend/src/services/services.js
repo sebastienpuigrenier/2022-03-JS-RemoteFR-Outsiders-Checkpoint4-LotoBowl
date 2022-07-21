@@ -11,9 +11,9 @@ const verifPassword = (myPlaintextPassword, hashedPassword) => {
   return bcrypt.compareSync(myPlaintextPassword, hashedPassword);
 };
 
-const JWTTokenCreator = (userEmail, userPseudo) => {
+const JWTTokenCreator = (userEmail, userPseudo, userAdmin) => {
   return jwt.sign(
-    { email: userEmail, pseudo: userPseudo },
+    { email: userEmail, pseudo: userPseudo, admin: userAdmin },
     process.env.PRIVATE_KEY
   );
 };

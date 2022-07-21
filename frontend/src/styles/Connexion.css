@@ -65,7 +65,7 @@
   .connexion-login-container,
   .connexion-sigin-container {
     width: 40%;
-    height: 30vh;
+    height: 35vh;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -74,7 +74,7 @@
 
   .display_none {
     display: flex !important;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
 
   .connexion-plus_icon {
@@ -92,7 +92,7 @@
     font-size: 1.5rem;
   }
   .connexion-form-container {
-    height: 20vh;
+    height: 35vh;
   }
 
   .connexion-bar h2 {

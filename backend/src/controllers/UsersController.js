@@ -36,7 +36,7 @@ class UsersController {
       })
       .then((user) => {
         if (verifPassword(req.body.password, user.password)) {
-          const token = JWTTokenCreator(user.email, user.pseudo);
+          const token = JWTTokenCreator(user.email, user.pseudo, user.isadmin);
           res
             .status(201)
             .cookie("lotobowl_user", token, {
@@ -48,6 +48,7 @@ class UsersController {
               cookie: token,
               email: user.email,
               pseudo: user.pseudo,
+              admin: user.isadmin,
             });
         } else {
           res.status(401).send("Email ou mot de passe incorect");

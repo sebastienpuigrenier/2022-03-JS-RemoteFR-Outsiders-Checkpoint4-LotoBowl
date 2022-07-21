@@ -39,7 +39,6 @@ function AdminCreationJournee({ update, handleUpdate }) {
         console.error(err);
       });
   };
-
   return (
     <>
       <h1 className="title">Gestion des journées !</h1>
@@ -48,23 +47,25 @@ function AdminCreationJournee({ update, handleUpdate }) {
           <h2>Liste des journées existantes :</h2>
           <div className="admincreation-ul-container">
             <ul className="scroll4">
-              {listeJournee
-                .sort((a, b) => {
-                  const keyA = a.numero;
-                  const keyB = b.numero;
-                  if (keyA < keyB) return 1;
-                  if (keyA > keyB) return -1;
-                  return 0;
-                })
-                .map((journee) => {
-                  return (
-                    <li>
-                      {`Journée ${journee.numero} : ${journee.nom}${
-                        journee.is_closed ? " - fermée" : ""
-                      }`}
-                    </li>
-                  );
-                })}
+              {listeJournee.length < 1
+                ? "Aucune journée enregistrée"
+                : listeJournee
+                    .sort((a, b) => {
+                      const keyA = a.numero;
+                      const keyB = b.numero;
+                      if (keyA < keyB) return 1;
+                      if (keyA > keyB) return -1;
+                      return 0;
+                    })
+                    .map((journee) => {
+                      return (
+                        <li>
+                          {`Journée ${journee.numero} : ${journee.nom}${
+                            journee.is_closed ? " - fermée" : ""
+                          }`}
+                        </li>
+                      );
+                    })}
             </ul>
           </div>
         </div>
