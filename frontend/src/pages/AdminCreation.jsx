@@ -12,10 +12,10 @@ function AdminCreation() {
   };
 
   return (
-    <>
+    <div className="match-list-container">
       <AdminCreationJournee update={update} handleUpdate={handleUpdate} />
       <AdminCreationMatch update={update} />
-    </>
+    </div>
   );
 }
 

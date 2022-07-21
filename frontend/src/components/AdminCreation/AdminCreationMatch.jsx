@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { notifySuccess, notifyError, api } from "@services/services";
 
-function AdminCreationMatch(update) {
+function AdminCreationMatch({ update }) {
   const [newMatch, setNewMatch] = useState({});
   const [listeJournee, setListeJournee] = useState([]);
   const [listeEquipe, setListeEquipe] = useState([]);
@@ -138,7 +138,7 @@ function AdminCreationMatch(update) {
   };
   return (
     <div className="admincreation-match">
-      <h2>Création d'un nouveau Match !</h2>
+      <h1 className="title">Création d'un nouveau Match !</h1>
       <form
         className="admincreation-match-form"
         method="post"
@@ -147,64 +147,109 @@ function AdminCreationMatch(update) {
         <h2>Choisir une journée :</h2>
         <label htmlFor="journee_id">
           <select
+            className="select-menu"
             name="journee_id"
             id="journee_id"
             onChange={(e) => handleChange(e)}
           >
             <option value="">--Choisir une journée de la liste--</option>
-            {listeJournee.map((journee) => {
-              return (
-                <option value={journee.id}>
-                  {journee.numero} - {journee.nom}
-                </option>
-              );
-            })}
-          </select>
-        </label>
-        <h2>Choisir une équipe</h2>
-        <label htmlFor="equipe1_id">
-          <select
-            name="equipe1_id"
-            id="equipe1_id"
-            onChange={(e) => handleChange(e)}
-          >
-            <option value="">--Choisir une équipe de la liste--</option>
-            {listeEquipe
-              // .filter((equipe) => {
-              //   return equipe.id !== newMatch.equipe2_id;
-              // })
-              .map((equipe) => {
+            {listeJournee
+              .sort((a, b) => {
+                const keyA = a.numero;
+                const keyB = b.numero;
+                if (keyA < keyB) return -1;
+                if (keyA > keyB) return 1;
+                return 0;
+              })
+              .map((journee) => {
                 return (
-                  <option value={equipe.id}>
-                    {equipe.nom} - {equipe.coach}
+                  <option value={journee.id}>
+                    {journee.numero} - {journee.nom}
                   </option>
                 );
               })}
           </select>
         </label>
-        <p>VS</p>
-        <h2>Choisir une équipe</h2>
-        <label htmlFor="equipe2_id">
-          <select
-            name="equipe2_id"
-            id="equipe2_id"
-            onChange={(e) => handleChange(e)}
-          >
-            <option value="">--Choisir une équipe de la liste--</option>
-            {listeEquipe
-              // .filter((equipe) => {
-              //   return equipe.id !== newMatch.equipe1_id;
-              // })
-              .map((equipe) => {
-                return (
-                  <option value={equipe.id}>
-                    {equipe.nom} - {equipe.coach}
-                  </option>
-                );
-              })}
-          </select>
-        </label>
-        <br />
+        <div className="creation-header">
+          <div>
+            <h2>Choisir L'équipe 1</h2>
+            <label htmlFor="equipe1_id">
+              <select
+                className="select-menu"
+                name="equipe1_id"
+                id="equipe1_id"
+                onChange={(e) => handleChange(e)}
+              >
+                <option value="">--Choisir une équipe de la liste--</option>
+                {listeEquipe
+                  // .filter((equipe) => {
+                  //   return equipe.id !== newMatch.equipe2_id;
+                  // })
+                  .map((equipe) => {
+                    return (
+                      <option value={equipe.id}>
+                        {equipe.nom} - {equipe.coach}
+                      </option>
+                    );
+                  })}
+              </select>
+            </label>
+          </div>
+          <h2>VS</h2>
+          <div>
+            <h2>Choisir L'équipe 2</h2>
+            <label htmlFor="equipe2_id">
+              <select
+                className="select-menu"
+                name="equipe2_id"
+                id="equipe2_id"
+                onChange={(e) => handleChange(e)}
+              >
+                <option value="">--Choisir une équipe de la liste--</option>
+                {listeEquipe
+                  // .filter((equipe) => {
+                  //   return equipe.id !== newMatch.equipe1_id;
+                  // })
+                  .map((equipe) => {
+                    return (
+                      <option value={equipe.id}>
+                        {equipe.nom} - {equipe.coach}
+                      </option>
+                    );
+                  })}
+              </select>
+            </label>
+          </div>
+        </div>
+        <div
+          className={`match-card-container ${
+            newMatch.equipe1_id === undefined ||
+            newMatch.equipe2_id === undefined ||
+            newMatch.journee_id === undefined ||
+            newMatch.equipe1_id === newMatch.equipe2_id
+              ? "recap-display-none"
+              : ""
+          }`}
+        >
+          <div className="recap-match-card-container">
+            <h2>Résumé du match qui va être créé</h2>
+            <div className="recap-match-card-content">
+              <div>{resumeJournee.nom}</div>
+              <h2> - </h2>
+              <div>
+                {resumeEquipe1.nom}
+                <br />
+                {resumeEquipe1.cote_actuelle}
+              </div>
+              <h2> VS </h2>
+              <div>
+                {resumeEquipe2.nom}
+                <br />
+                {resumeEquipe2.cote_actuelle}
+              </div>
+            </div>
+          </div>
+        </div>
         <button
           disabled={
             newMatch.equipe1_id === undefined ||
@@ -215,14 +260,18 @@ function AdminCreationMatch(update) {
               : ""
           }
           type="submit"
+          className={`button-para button-ok ${
+            newMatch.equipe1_id === undefined ||
+            newMatch.equipe2_id === undefined ||
+            newMatch.journee_id === undefined ||
+            newMatch.equipe1_id === newMatch.equipe2_id
+              ? "button-disabled"
+              : ""
+          }`}
         >
-          Créer la journée !
+          <p>Créer le match !</p>
         </button>
       </form>
-      <h2>Résumé du match qui va être créé</h2>
-      {resumeJournee.nom} - {resumeEquipe1.nom} vs {resumeEquipe2.nom}
-      <br />
-      {resumeEquipe1.cote_actuelle} vs {resumeEquipe2.cote_actuelle}
     </div>
   );
 }

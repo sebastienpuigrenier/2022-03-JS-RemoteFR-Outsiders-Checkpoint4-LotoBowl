@@ -11,12 +11,12 @@ const {
 const router = express.Router();
 
 const {
-  /* fileMiddleware, */
+  fileMiddleware,
   idFromEmailMiddleware,
 } = require("./middlewares/middlewares");
 
 /* eslint-disable */
-router.post("/create_user", UsersController.add);
+router.post("/create_user", fileMiddleware, UsersController.add);
 router.post("/login", idFromEmailMiddleware, UsersController.session);
 router.post("/logout", UsersController.logout);
 
@@ -37,9 +37,6 @@ router.post("/create_match", MatchsController.add);
 router.post("/update_match", MatchsController.update);
 
 router.post("/new_bet", idFromEmailMiddleware, ParisController.add);
-router.get(
-  "/browse_by_journee_by_user/:journee_id/:user_id",
-  ParisController.browseJourneeUser
-);
+router.get("/browse_by_journee_by_user/:journee_id/:user_id",ParisController.browseJourneeUser);
 /* eslint-enable */
 module.exports = router;

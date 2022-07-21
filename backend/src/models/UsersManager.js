@@ -4,6 +4,7 @@ class UsersManager extends AbstractManager {
   static table = "users";
   /* eslint-disable */
   insert(user) {
+    console.log(user)
     return this.connection.query(
       `insert into ${this.table} (id, pseudo, email, avatar, password, isadmin) values (?, ?, ?, ?, ?, ?)`,
       [

@@ -90,6 +90,7 @@ function AdminClose() {
 
   return (
     <div className="match-list-container">
+      <h1 className="title">Finalisation des journées</h1>
       <form
         className="admincreation-match-form"
         method="post"
@@ -105,6 +106,13 @@ function AdminClose() {
           >
             <option value="">--Choisir une journée de la liste--</option>
             {listeJournee
+              .sort((a, b) => {
+                const keyA = a.numero;
+                const keyB = b.numero;
+                if (keyA < keyB) return -1;
+                if (keyA > keyB) return 1;
+                return 0;
+              })
               .filter((journee) => {
                 return !journee.is_closed;
               })

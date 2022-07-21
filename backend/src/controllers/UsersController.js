@@ -14,6 +14,7 @@ class UsersController {
       password: hashedPassword,
       id: uuidv4(),
       isadmin: 0,
+      avatar: req.files.imageFile.newFilename,
     };
     const user = req.body;
     models.users

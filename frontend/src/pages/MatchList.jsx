@@ -22,6 +22,7 @@ function MatchList() {
   const listeParis = [];
   const [listeSommes, setListeSommes] = useState({});
   const [listeChoix, setListeChoix] = useState({});
+  // const [update, setUpdate] = useState(false);
 
   // Need to refactor the 2 useEffect in one !!!
 
@@ -83,19 +84,18 @@ function MatchList() {
         pari_egalite:
           listeChoix[`radio-paris-${listeParis[i]}`] === "E" ? 1 : 0,
       };
-      api
-        .post(ENDPOINT, newParis)
-        .then(() => {
-          notifySuccess("L'ensemble des paris ont été enregistré !");
-        })
-        .catch((err) => {
-          notifyError("Une erreur s'est produite lors de l'enregistrement");
-          console.error(err);
-        });
+      api.post(ENDPOINT, newParis).catch((err) => {
+        notifyError("Une erreur s'est produite lors de l'enregistrement");
+        console.error(err);
+      });
     }
+    notifySuccess("L'ensemble des paris ont été enregistré !");
+    e.target.reset();
+    setMatchs([]);
   };
   return (
     <div className="match-list-container">
+      <h1 className="title">Placer un pari !</h1>
       <div className="match-list-regles">
         <h2>Rappel des règles des paris :</h2>
         <ul className="match-list-ul">
@@ -128,6 +128,13 @@ function MatchList() {
           >
             <option value="">-- Choisir une journée de la liste --</option>
             {listeJournee
+              .sort((a, b) => {
+                const keyA = a.numero;
+                const keyB = b.numero;
+                if (keyA < keyB) return -1;
+                if (keyA > keyB) return 1;
+                return 0;
+              })
               .filter((journee) => {
                 return !journee.is_closed;
               })

@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import ExportContext from "../contexts/Context";
 
 import "./Footer.css";
 
 function Footer() {
+  const { footerImg } = useContext(ExportContext.Context);
+
   return (
     <footer className="footer-container">
       <div>
-        <p>Checkpoint 4 de S Puigrenier</p>
+        <img src={footerImg} alt="sponsor du jour" />
       </div>
-      <div> Copyright © 2022</div>
     </footer>
   );
 }

@@ -19,7 +19,7 @@ class ParisManager extends AbstractManager {
 
   browseJourneeUser(parisToShow) {
     return this.connection.query(
-      `SELECT paris.*, matchs.*, journees.nom AS nom_journee, journees.numero AS numero_journee, equipe1.nom AS nom_equipe1, equipe1.coach AS coach_equipe1, equipe2.nom AS nom_equipe2, equipe2.coach AS coach_equipe2 FROM paris 
+      `SELECT paris.*, matchs.*, journees.is_closed AS journeeisclosed, journees.nom AS nom_journee, journees.numero AS numero_journee, equipe1.nom AS nom_equipe1, equipe1.coach AS coach_equipe1, equipe2.nom AS nom_equipe2, equipe2.coach AS coach_equipe2 FROM paris 
       INNER JOIN matchs ON paris.match_id = matchs.id
       INNER JOIN journees ON journees.id = matchs.journee_id
       INNER JOIN equipes AS equipe1 ON matchs.equipe1_id = equipe1.id

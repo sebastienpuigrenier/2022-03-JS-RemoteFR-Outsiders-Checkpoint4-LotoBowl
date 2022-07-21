@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { notifySuccess, notifyError, api } from "@services/services";
 
+import UploadImageForm from "@components/Connexion/UploadImageForm";
+
 import { IoCloseCircle, IoAddCircle } from "react-icons/io5";
 
 function ConnexionLogIn() {
   const [infoCreate, setInfoCreate] = useState({});
   const [displayLogIn, setDisplayLogIn] = useState(false);
+  const [imageFile, setImageFile] = useState([]);
 
   const handleShowLogIn = () => {
     setDisplayLogIn(!displayLogIn);
@@ -20,9 +23,22 @@ function ConnexionLogIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (infoCreate.password !== infoCreate.conf_password) {
+      notifyError(
+        "Votre confirmation de mot de passe n'est pas correcte. Merci de vérifier vos données."
+      );
+      return;
+    }
+    const formData = new FormData();
+    formData.append("imageFile", imageFile[0]);
+    for (const clef in infoCreate) {
+      if ({}.hasOwnProperty.call(infoCreate, clef)) {
+        formData.append(clef, infoCreate[clef]);
+      }
+    }
     const ENDPOINT = "/create_user";
     api
-      .post(ENDPOINT, infoCreate)
+      .post(ENDPOINT, formData)
       .then((res) => {
         notifySuccess(`Nouvel utilisateur créé : ${res.data.pseudo}`);
       })
@@ -55,6 +71,9 @@ function ConnexionLogIn() {
         action="post"
         onSubmit={(e) => handleSubmit(e)}
       >
+        <div className="user_avatar">
+          <UploadImageForm imageFile={imageFile} setImageFile={setImageFile} />
+        </div>
         <label htmlFor="signin-pseudo">
           <input
             type="text"

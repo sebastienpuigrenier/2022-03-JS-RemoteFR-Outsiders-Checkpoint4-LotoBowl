@@ -12,8 +12,8 @@ function Recap() {
   const [thisUsers, setThisUsers] = useState("");
   const [parisToShow, setParisToShow] = useState({});
   const [listeParis, setListeParis] = useState([]);
-  const [totalDepense, setTotalDepense] = useState(0);
-  const [totalGain, setTotalGain] = useState(0);
+  // const [totalDepense, setTotalDepense] = useState(0);
+  // const [totalGain, setTotalGain] = useState(0);
 
   useEffect(() => {
     const ENDPOINT = "/browse_journee";
@@ -65,9 +65,9 @@ function Recap() {
         console.error(err);
       });
   }, [thisJournee, thisUsers]);
-
   return (
     <div className="match-list-container">
+      <h1 className="title">Récapitulatif des paris</h1>
       <div className="match-recap-header">
         <div className="match-recap-header-select">
           <h2>Choisir une journée :</h2>
@@ -80,12 +80,19 @@ function Recap() {
             >
               <option value="">--Choisir une journée de la liste--</option>
               {listeJournee
-                .filter((journee) => {
-                  return journee.is_closed;
+                .sort((a, b) => {
+                  const keyA = a.numero;
+                  const keyB = b.numero;
+                  if (keyA < keyB) return -1;
+                  if (keyA > keyB) return 1;
+                  return 0;
                 })
+                // .filter((journee) => {
+                //   return journee.is_closed;
+                // })
                 .map((journee) => {
                   return (
-                    <option value={journee.id}>
+                    <option value={journee.id} id={journee.is_closed}>
                       {journee.numero} - {journee.nom}
                     </option>
                   );
@@ -111,6 +118,7 @@ function Recap() {
         </div>
       </div>
       {listeParis.map((pari) => {
+        // setTotalDepense(totalDepense + parseFloat(pari.somme));
         return (
           <div className="match-card-container">
             <div>
@@ -124,9 +132,11 @@ function Recap() {
             </div>
             <div className="match-recap-somme">
               <div>Somme dépensée :</div>
+              <br />
               <div>{pari.somme} po</div>
             </div>
             <CalculGain
+              journeeIsClosed={parseInt(pari.journeeisclosed)}
               somme={parseFloat(pari.somme)}
               tdEquipe1={parseFloat(pari.td_equipe_1)}
               tdEquipe2={parseFloat(pari.td_equipe_2)}
@@ -136,18 +146,18 @@ function Recap() {
               coteEgalite={parseFloat(pari.cote_egalite)}
               coteVEquipe1={parseFloat(pari.cote_v_equipe_1)}
               coteVEquipe2={parseFloat(pari.cote_v_equipe_2)}
-              totalDepense={totalDepense}
-              totalGain={totalGain}
-              setTotalDepense={setTotalDepense}
-              setTotalGain={setTotalGain}
+              // totalDepense={totalDepense}
+              // totalGain={totalGain}
+              // setTotalDepense={setTotalDepense}
+              // setTotalGain={setTotalGain}
             />
           </div>
         );
       })}
-      <div className="match-card-container match-recap-recap">
+      {/* <div className="match-card-container match-recap-recap">
         <div>Total Dépenses : {totalDepense} po</div>
         <div>Total Gains : {totalGain} po</div>
-      </div>
+      </div> */}
     </div>
   );
 }
